@@ -4,7 +4,7 @@ angular.module('starter.controllers', ['ionic.cloud'])
     $scope.items = [
         {
             name: 'Marty McFly',
-            date: 'November 05, 2023',
+            date: 'November 05, 1985',
             avatar: 'img/mcfly.jpg',
             image: 'img/delorean.jpg',
             content: 'Hola Wait a minute. Wait a minute, Doc. Uhhh... Are you telling me that you built a time machine... out of a DeLorean?! Whoa. This is heavy.'
@@ -26,13 +26,25 @@ function(                 $scope,   $ionicDeploy,   $ionicPush,   $ionicAuth,   
             })
         }
         else{
-            $ionicPush.register().then(function(token) {
-                alert(JSON.strigify(token))
-                return $ionicPush.saveToken(token, {ignore_user:true})
-            }).then(function(token) {
-                alert('Token guardado')
-            })
+            
         }
+    })
+
+    alert("Comenzando")
+    $ionicPush.register({
+        canShowAlert: true,         //Can pushes show an alert on your screen?
+        canSetBadge: true,          //Can pushes update app icon badges?
+        canPlaySound: true,         //Can notifications play a sound?
+        canRunActionsOnWake: true   //Can run actions outside the app
+    }).then(function(token) {
+        alert(JSON.stringify(token))
+
+        $ionicPush.saveToken(token, {ignore_user:true}).then(function(t) {
+            alert(JSON.stringify(token))
+        }, function(err) {
+            alert(JSON.stringify(err))
+        })
+        
     })
 
 }])
