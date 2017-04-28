@@ -28,6 +28,18 @@ angular.module('starter', ['ionic', 'ionic.cloud', 'starter.controllers', 'start
     $ionicCloudProvider.init({
         "core": {
             "app_id": "ab1b9532"
+        },
+        "push": {
+            "sender_id": "234840717833",
+            "pluginConfig": {
+                "ios": {
+                    "badge": true,
+                    "sound": true
+                },
+                "android": {
+                    "iconColor": "#343434"
+                }
+            }
         }
     })
 
