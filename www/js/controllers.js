@@ -7,7 +7,7 @@ angular.module('starter.controllers', ['ionic.cloud'])
             date: 'November 05, 1985',
             avatar: 'img/mcfly.jpg',
             image: 'img/delorean.jpg',
-            content: 'Hola Wait a minute. Wait a minute, Doc. Uhhh... Are you telling me that you built a time machine... out of a DeLorean?! Whoa. This is heavy.'
+            content: 'Wait a minute. Wait a minute, Doc. Uhhh... Are you telling me that you built a time machine... out of a DeLorean?! Whoa. This is heavy.'
         }
     ]
 })
@@ -25,39 +25,24 @@ function(                 $scope,   $ionicDeploy,   $ionicPush,   $ionicAuth,   
                 })
             })
         }
-        else{
-            
-        }
     })
 
-    alert("Comenzando")
-    $ionicPush.register({
-        canShowAlert: true,         //Can pushes show an alert on your screen?
-        canSetBadge: true,          //Can pushes update app icon badges?
-        canPlaySound: true,         //Can notifications play a sound?
-        canRunActionsOnWake: true   //Can run actions outside the app
+    $ionicPush.register().then(function(token) {
+        return $ionicPush.saveToken(token, {ignore_user:true})
     }).then(function(token) {
-        alert(JSON.stringify(token))
+        console.log("Token obtenido: ", token.token)
+    }, function(err) {
+        console.log(JSON.stringify(err))
+    })
 
-        $ionicPush.saveToken(token, {ignore_user:true}).then(function(t) {
-            alert(JSON.stringify(token))
-        }, function(err) {
-            alert(JSON.stringify(err))
-        })
-        
+    $scope.$on('cloud:push:notification', function(event, data) {
+        var msg = data.message;
+        alert(msg.title + ': ' + msg.text)
     })
 
 }])
 
 .controller('ChatsCtrl', function($scope, Chats) {
-    // With the new view caching in Ionic, Controllers are only called
-    // when they are recreated or on app start, instead of every page change.
-    // To listen for when this page is active (for example, to refresh data),
-    // listen for the $ionicView.enter event:
-    //
-    //$scope.$on('$ionicView.enter', function(e) {
-    //})
-
     $scope.chats = Chats.all()
     $scope.remove = function(chat) {
         Chats.remove(chat)
