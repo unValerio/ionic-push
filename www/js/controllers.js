@@ -4,7 +4,7 @@ angular.module('starter.controllers', ['ionic.cloud'])
     $scope.items = [
         {
             name: 'Marty McFly',
-            date: 'November 05, 1985',
+            date: 'November 05, 1990',
             avatar: 'img/mcfly.jpg',
             image: 'img/delorean.jpg',
             content: 'Wait a minute. Wait a minute, Doc. Uhhh... Are you telling me that you built a time machine... out of a DeLorean?! Whoa. This is heavy.'

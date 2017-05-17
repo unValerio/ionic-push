@@ -27,7 +27,7 @@ angular.module('starter', ['ionic', 'ionic.cloud', 'starter.controllers', 'start
 
     $ionicCloudProvider.init({
         "core": {
-            "app_id": "ab1b9532"
+            "app_id": "7bfff880"
         },
         "push": {
             "sender_id": "234840717833",
